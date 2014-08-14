@@ -26,7 +26,7 @@
 	if (!self.openXbanner)
 	{
 		self.openXbanner = [[OXMAdBanner alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-		[self.openXbanner setDomain:@"oxcs-d.openxenterprise.com"
+		[self.openXbanner setDomain:[info objectForKey:@"domain"]
 				   portraitAdUnitID:[info objectForKey:@"portraitAdUnitID"]
 				  landscapeAdUnitID:[info objectForKey:@"landscapeAdUnitID"]];
 		[self.openXbanner setAdAutoRefresh:NO];
