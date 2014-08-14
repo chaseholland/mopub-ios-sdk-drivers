@@ -1,0 +1,3 @@
+[submodule "mNectar"]
+	path = mNectar
+	url = https://github.com/mnectarinc/mnectar-mopub-ios-sdk-adapter.git
