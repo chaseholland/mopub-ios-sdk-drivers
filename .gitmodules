@@ -1,6 +1,3 @@
 [submodule "mNectar"]
 	path = mNectar
 	url = https://github.com/mnectarinc/mnectar-mopub-ios-sdk-adapter.git
-[submodule "AppLovin"]
-	path = AppLovin
-	url = https://github.com/AppLovin/SDK-Network-Adaptors.git
