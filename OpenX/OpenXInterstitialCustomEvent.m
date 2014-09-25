@@ -7,6 +7,7 @@
 //
 
 #import "OpenXInterstitialCustomEvent.h"
+#import "AutoRelease.h"
 
 @interface OpenXInterstitialCustomEvent()
 
@@ -19,16 +20,27 @@
 @synthesize openXInterstitial;
 
 #pragma mark -
+#pragma mark NSObject
+
+- (void) dealloc
+{
+	self.openXInterstitial.interstitialDelegate = nil;
+	self.openXInterstitial = nil;
+	[super dealloc];
+}
+
+#pragma mark -
 #pragma mark MPInterstitialCustomEvent
 
 - (void) requestInterstitialWithCustomEventInfo:(NSDictionary *)info
 {
 	if (!self.openXInterstitial)
 	{
-		self.openXInterstitial = [[OXMAdInterstitialController alloc] initWithDomain:[info objectForKey:@"domain"]
-																	portraitAdUnitID:[info objectForKey:@"portraitAdUnitID"]
-																    landscapeAdUnitID:[info objectForKey:@"landscapeAdUnitID"]];
-		
+		OXMAdInterstitialController * c = [[OXMAdInterstitialController alloc] initWithDomain:[info objectForKey:@"domain"]
+																			 portraitAdUnitID:[info objectForKey:@"portraitAdUnitID"]
+																			landscapeAdUnitID:[info objectForKey:@"landscapeAdUnitID"]];
+		self.openXInterstitial = c;
+		RELEASE(c);
 		self.openXInterstitial.interstitialDelegate = self;
 	}
 	

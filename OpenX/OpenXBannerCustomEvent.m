@@ -7,6 +7,7 @@
 //
 
 #import "OpenXBannerCustomEvent.h"
+#import "AutoRelease.h"
 
 @interface OpenXBannerCustomEvent()
 
@@ -25,7 +26,11 @@
 {
 	if (!self.openXbanner)
 	{
-		self.openXbanner = [[OXMAdBanner alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+		OXMAdBanner* banner = [[OXMAdBanner alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+		self.openXbanner = banner;
+		
+		RELEASE(banner);
+		
 		[self.openXbanner setDomain:[info objectForKey:@"domain"]
 				   portraitAdUnitID:[info objectForKey:@"portraitAdUnitID"]
 				  landscapeAdUnitID:[info objectForKey:@"landscapeAdUnitID"]];
